@@ -22,7 +22,9 @@
 
 # misc
 .DS_Store
+.review
 *.pem
+.tmp-hero.png
 
 # debug
 npm-debug.log*
