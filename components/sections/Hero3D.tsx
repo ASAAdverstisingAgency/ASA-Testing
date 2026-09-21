@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import { Suspense, useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { Logo } from "@/components/layout/Logo";
 import { TalkButton } from "@/components/ui/TalkButton";
 import { gsap } from "@/lib/gsap";
 import { useExperienceLevel, usePrefersReducedMotion } from "@/lib/hooks";
@@ -106,9 +105,6 @@ export function Hero3D() {
 
         <div className="site-shell relative z-10 flex h-full items-end pt-[84px] pb-10 lg:items-center lg:pb-8">
           <div ref={copy} className="max-w-[30rem]">
-            <div data-hero-ui className="mb-6 inline-flex rounded-sm bg-white px-1.5 py-1">
-              <Logo priority className="h-8 w-[4.5rem] lg:h-9 lg:w-[5.2rem]" />
-            </div>
             <p data-hero-ui className="meta mb-4 text-white/70">
               We don&apos;t just advertise.
             </p>

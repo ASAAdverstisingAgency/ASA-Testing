@@ -6,7 +6,13 @@ export const services: Service[] = [
     number: "01",
     title: "Billboards & Hoardings",
     description:
-      "Large-format work built for highways, junctions, and city gates. Designed for distance, speed, weather, and the two seconds a person actually has.",
+      "Large-format displays built for highways, junctions, and city spaces.",
+    tag: "Large-format advertising",
+    theme: "dark",
+    image: {
+      src: "/Billborad.png",
+      alt: "ASA billboard against a cloudy sky",
+    },
     capabilities: [
       "48-sheet & spectaculars",
       "Hoarding systems",
@@ -19,7 +25,13 @@ export const services: Service[] = [
     number: "02",
     title: "Outdoor Advertising",
     description:
-      "Transit, street furniture, and unmissable OOH that treats the city as media. One idea, many surfaces, one voice.",
+      "Transit and street furniture that connect your brand with the city.",
+    tag: "Transit & shelters",
+    theme: "light",
+    image: {
+      src: "/outdoor_adver.png",
+      alt: "ASA outdoor advertising on a city bus shelter",
+    },
     capabilities: [
       "Transit & shelters",
       "Street furniture",
@@ -32,7 +44,13 @@ export const services: Service[] = [
     number: "03",
     title: "Digital Marketing",
     description:
-      "Social, display, DOOH, and paid media. The board recut for the feed, the loop, and the click — so the brand is everywhere that matters.",
+      "Social, display, and digital campaigns built for the moments that matter.",
+    tag: "Social campaigns",
+    theme: "light",
+    image: {
+      src: "/digital_market.png",
+      alt: "ASA digital marketing on phone and screen",
+    },
     capabilities: [
       "Social campaigns",
       "DOOH",
@@ -45,7 +63,13 @@ export const services: Service[] = [
     number: "04",
     title: "Brand Campaigns",
     description:
-      "From the first line to the last site. Strategy, art direction, and production so outdoor and digital feel like one campaign.",
+      "Strategy, art direction, and production with one consistent brand voice.",
+    tag: "Strategy & creative",
+    theme: "muted",
+    image: {
+      src: "/brandcampaingn.png",
+      alt: "ASA brand campaign print materials",
+    },
     capabilities: [
       "Campaign ideas",
       "Art direction",

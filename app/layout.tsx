@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   description: site.description,
   icons: {
-    icon: "/asa-logo.jpg",
-    apple: "/asa-logo.jpg",
+    icon: "/2000px%20Logo.webp",
+    apple: "/2000px%20Logo.webp",
   },
 };
 

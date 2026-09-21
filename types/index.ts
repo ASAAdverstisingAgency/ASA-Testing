@@ -45,6 +45,12 @@ export interface Service {
   number: string;
   title: string;
   description: string;
+  tag: string;
+  theme: "dark" | "light" | "muted";
+  image: {
+    src: string;
+    alt: string;
+  };
   capabilities: string[];
 }
 
