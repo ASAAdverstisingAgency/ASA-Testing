@@ -10,42 +10,42 @@ const themes = {
     muted: "text-white/65",
     tag: "text-white/45",
     number: "text-white/45",
-    arrow: "border-white/25 text-paper hover:border-accent hover:bg-accent hover:text-ink",
+    arrow: "border-white/25 text-paper hover:border-accent hover:bg-accent hover:text-paper",
   },
   light: {
     card: "bg-[#eceae6] text-ink",
     muted: "text-ink/60",
     tag: "text-ink/40",
     number: "text-ink/35",
-    arrow: "border-ink/20 text-ink hover:border-accent hover:bg-accent",
+    arrow: "border-ink/20 text-ink hover:border-accent hover:bg-accent hover:text-paper",
   },
   muted: {
     card: "bg-[#ddd9d2] text-ink",
     muted: "text-ink/60",
     tag: "text-ink/40",
     number: "text-ink/35",
-    arrow: "border-ink/20 text-ink hover:border-accent hover:bg-accent",
+    arrow: "border-ink/20 text-ink hover:border-accent hover:bg-accent hover:text-paper",
   },
 } as const;
 
 export function Services3D({ heading = true }: { heading?: boolean }) {
   return (
-    <section className="bg-paper py-20 md:py-28">
+    <section className="bg-paper py-16 sm:py-20 md:py-28">
       {heading && (
-        <div className="site-shell mb-10 md:mb-14">
+        <div className="site-shell mb-8 sm:mb-10 md:mb-14">
           <p className="meta mb-4">Capabilities</p>
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h2 className="display text-[12vw] leading-[0.88] md:text-[7vw] lg:text-[5.2vw]">
+          <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-end md:justify-between">
+            <h2 className="display text-[clamp(2.75rem,12vw,5rem)] leading-[0.88] md:text-[clamp(3.5rem,7vw,5.5rem)] lg:text-[clamp(4rem,5.2vw,6rem)]">
               What we do
             </h2>
-            <p className="max-w-[22rem] text-[15px] leading-relaxed text-muted md:pb-2 md:text-right">
+            <p className="max-w-[22rem] text-[14px] leading-relaxed text-muted sm:text-[15px] md:pb-2 md:text-right">
               Outdoor, digital, and brand campaigns.
             </p>
           </div>
         </div>
       )}
 
-      <div className="site-shell grid gap-4 md:grid-cols-2 md:gap-5">
+      <div className="site-shell grid gap-4 sm:gap-5 md:grid-cols-2">
         {services.map((service) => {
           const theme = themes[service.theme];
           const fullBleed =
@@ -113,7 +113,7 @@ export function Services3D({ heading = true }: { heading?: boolean }) {
                       </span>
                     </div>
                     <div className="mt-auto max-w-[22rem]">
-                      <h3 className="font-display text-[8vw] leading-[0.92] font-extrabold tracking-[-0.045em] uppercase sm:text-[3.4vw] lg:text-[2.15vw]">
+                      <h3 className="font-display text-[clamp(1.75rem,7vw,2.5rem)] leading-[0.92] font-extrabold tracking-[-0.045em] uppercase sm:text-[clamp(1.6rem,3vw,2.2rem)] lg:text-[clamp(1.7rem,2.15vw,2.4rem)]">
                         {service.title}
                       </h3>
                       <p className={cn("mt-4 text-[14px] leading-relaxed", theme.muted)}>
@@ -157,7 +157,7 @@ export function Services3D({ heading = true }: { heading?: boolean }) {
                       </span>
                     </div>
                     <div className="mt-auto max-w-[22rem] pr-2">
-                      <h3 className="font-display text-[8vw] leading-[0.92] font-extrabold tracking-[-0.045em] uppercase sm:text-[3.4vw] lg:text-[2.15vw]">
+                      <h3 className="font-display text-[clamp(1.75rem,7vw,2.5rem)] leading-[0.92] font-extrabold tracking-[-0.045em] uppercase sm:text-[clamp(1.6rem,3vw,2.2rem)] lg:text-[clamp(1.7rem,2.15vw,2.4rem)]">
                         {service.title}
                       </h3>
                       <p
@@ -189,7 +189,7 @@ export function Services3D({ heading = true }: { heading?: boolean }) {
 
                   <div className="relative z-10 grid h-[calc(100%-2.5rem)] gap-6 sm:grid-cols-[1.15fr_0.85fr] sm:items-end">
                     <div className="flex min-h-0 flex-col">
-                      <h3 className="font-display text-[8vw] leading-[0.92] font-extrabold tracking-[-0.045em] uppercase sm:text-[3.4vw] lg:text-[2.15vw]">
+                      <h3 className="font-display text-[clamp(1.75rem,7vw,2.5rem)] leading-[0.92] font-extrabold tracking-[-0.045em] uppercase sm:text-[clamp(1.6rem,3vw,2.2rem)] lg:text-[clamp(1.7rem,2.15vw,2.4rem)]">
                         {service.title}
                       </h3>
                       <p

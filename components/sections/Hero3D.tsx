@@ -82,7 +82,7 @@ export function Hero3D() {
   );
 
   return (
-    <section ref={section} className="relative h-[360vh] md:h-[440vh]">
+    <section ref={section} className="relative h-[280vh] sm:h-[320vh] md:h-[400vh] lg:h-[440vh]">
       <div className="sticky top-0 h-svh overflow-hidden bg-[#071018]">
         <div className="absolute inset-0" data-cursor={webgl ? "drag" : undefined}>
           {webgl ? (
@@ -101,14 +101,14 @@ export function Hero3D() {
           )}
         </div>
 
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-[min(32rem,36%)] bg-gradient-to-r from-[#071018] via-[#071018]/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-[min(32rem,55%)] bg-gradient-to-r from-[#071018] via-[#071018]/70 to-transparent sm:w-[min(32rem,42%)] lg:w-[min(32rem,36%)]" />
 
-        <div className="site-shell relative z-10 flex h-full items-end pt-[84px] pb-10 lg:items-center lg:pb-8">
-          <div ref={copy} className="max-w-[30rem]">
-            <p data-hero-ui className="meta mb-4 text-white/70">
+        <div className="site-shell relative z-10 flex h-full items-end pt-[88px] pb-8 sm:pb-10 md:items-end lg:items-center lg:pb-8">
+          <div ref={copy} className="w-full max-w-[20rem] sm:max-w-[26rem] md:max-w-[30rem]">
+            <p data-hero-ui className="meta mb-3 text-white/70 sm:mb-4">
               We don&apos;t just advertise.
             </p>
-            <h1 className="font-display text-[12.5vw] leading-[0.84] font-extrabold tracking-[-0.055em] text-paper sm:text-[8.5vw] lg:text-[4.6vw] xl:text-[4.2vw]">
+            <h1 className="font-display text-[clamp(2.6rem,11vw,3.75rem)] leading-[0.86] font-extrabold tracking-[-0.055em] text-paper sm:text-[clamp(3.2rem,8vw,4.5rem)] lg:text-[clamp(3.8rem,4.6vw,5.2rem)]">
               <span className="block overflow-hidden">
                 <span data-hero-line className="block">
                   We Make
@@ -125,12 +125,12 @@ export function Hero3D() {
                 </span>
               </span>
             </h1>
-            <p data-hero-ui className="mt-6 max-w-[26rem] text-[15px] leading-relaxed text-white/70">
+            <p data-hero-ui className="mt-5 max-w-[26rem] text-[14px] leading-relaxed text-white/70 sm:mt-6 sm:text-[15px]">
               From billboards to digital, we create powerful connections between
               brands and people.
             </p>
-            <div data-hero-ui className="pointer-events-auto mt-8">
-              <TalkButton href="/work" className="bg-paper text-ink hover:bg-accent">
+            <div data-hero-ui className="pointer-events-auto mt-6 sm:mt-8">
+              <TalkButton href="/#work" className="bg-paper text-ink hover:bg-accent hover:text-paper">
                 Explore Our Work
               </TalkButton>
             </div>
@@ -139,7 +139,7 @@ export function Hero3D() {
 
         <p
           ref={caption}
-          className="pointer-events-none absolute bottom-7 left-5 z-10 font-display text-[11px] tracking-[0.2em] text-white/55 uppercase opacity-0 lg:left-16"
+          className="pointer-events-none absolute bottom-6 left-4 z-10 hidden font-display text-[10px] tracking-[0.2em] text-white/55 uppercase opacity-0 sm:bottom-7 sm:left-5 sm:block sm:text-[11px] lg:left-16"
         />
       </div>
     </section>

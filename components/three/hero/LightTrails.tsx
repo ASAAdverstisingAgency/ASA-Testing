@@ -34,7 +34,7 @@ export function LightTrails({ count = 14 }: { count?: number }) {
         <mesh key={index} scale={[0.045, 0.045, 1.6 + (index % 4) * 0.55]}>
           <boxGeometry args={[1, 1, 1]} />
           <meshBasicMaterial
-            color={index % 3 === 0 ? "#fff6d4" : "#F5B400"}
+            color={index % 3 === 0 ? "#f5c4c6" : "#EC3038"}
             transparent
             opacity={0.55 + (index % 4) * 0.08}
             depthWrite={false}

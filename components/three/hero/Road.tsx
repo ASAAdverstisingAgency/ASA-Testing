@@ -57,7 +57,7 @@ export function Road() {
         <meshStandardMaterial color="#1a1a1a" roughness={0.72} metalness={0.08} />
       </mesh>
       <mesh geometry={lane} position={[0, 0.008, 0]}>
-        <meshBasicMaterial color="#F5B400" transparent opacity={0.55} />
+        <meshBasicMaterial color="#EC3038" transparent opacity={0.55} />
       </mesh>
     </group>
   );

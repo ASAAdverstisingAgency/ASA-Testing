@@ -7,23 +7,21 @@ import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { TalkButton } from "@/components/ui/TalkButton";
-import { navItems, site } from "@/data/site";
+import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
-const hints: Record<string, string> = {
-  Home: "Index",
-  "About Us": "Agency",
-  Services: "Capabilities",
-  "Our Work": "Archive",
-  Clients: "Partners",
-  "Contact Us": "Studio",
-};
+const headerLinks = [
+  { label: "Work", href: "/#work" },
+  { label: "Get a Proposal", href: "/#contact" },
+] as const;
 
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
+  const isHome = pathname === "/";
+  const solid = scrolled || open || isHome;
 
   if (menuPath !== pathname) {
     setMenuPath(pathname);
@@ -42,61 +40,41 @@ export function Header() {
       <header
         className={cn(
           "fixed top-0 right-0 left-0 z-[65] transition-[background,border-color,backdrop-filter,box-shadow] duration-500",
-          scrolled || open
-            ? "border-b border-line bg-paper/75 shadow-[0_1px_0_rgba(17,17,17,0.04)] backdrop-blur-md"
+          solid
+            ? "border-b border-line bg-paper shadow-[0_1px_0_rgba(17,17,17,0.04)]"
             : "border-b border-transparent bg-transparent",
         )}
       >
-        <div className="site-shell grid h-[72px] grid-cols-[1fr_auto] items-center lg:h-[88px] lg:grid-cols-[1fr_auto_1fr]">
+        <div className="site-shell flex h-[64px] items-center justify-between gap-4 sm:h-[72px] sm:gap-6 lg:h-[88px]">
           <Link
             href="/"
-            className="inline-flex items-center"
+            className="inline-flex min-w-0 items-center"
             aria-label={`${site.name} home`}
           >
             <Logo priority />
           </Link>
 
-          <nav className="hidden items-center gap-4 xl:gap-7 lg:flex" aria-label="Primary">
-            {navItems.map((item) => {
-              const active =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname === item.href || pathname.startsWith(`${item.href}/`);
-              return (
+          <div className="hidden items-center gap-5 md:flex lg:gap-8">
+            <nav className="flex items-center gap-5 lg:gap-7" aria-label="Primary">
+              {headerLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group relative overflow-hidden pb-1"
+                  className="text-[12px] font-medium tracking-[0.04em] whitespace-nowrap text-ink/70 transition-colors hover:text-accent lg:text-[13px]"
                 >
-                  <span
-                    className={cn(
-                      "meta block transition-transform duration-300 group-hover:-translate-y-[140%]",
-                      active ? "text-ink" : "text-muted",
-                    )}
-                  >
-                    {item.label}
-                  </span>
-                  <span className="meta absolute inset-x-0 top-full text-ink transition-transform duration-300 group-hover:-translate-y-[140%]">
-                    {hints[item.label] ?? item.label}
-                  </span>
-                  <span
-                    className={cn(
-                      "absolute bottom-0 left-0 h-px bg-ink transition-all duration-300 group-hover:w-full",
-                      active ? "w-full" : "w-0",
-                    )}
-                  />
+                  {item.label}
                 </Link>
-              );
-            })}
-          </nav>
+              ))}
+            </nav>
 
-          <div className="hidden justify-self-end lg:block">
-            <TalkButton href="/contact">Let&apos;s Talk</TalkButton>
+            <TalkButton href="/#contact">
+              Let&apos;s Talk
+            </TalkButton>
           </div>
 
           <button
             type="button"
-            className="justify-self-end p-2 lg:hidden"
+            className="p-2 md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -106,7 +84,7 @@ export function Header() {
           </button>
         </div>
       </header>
-      <MobileMenu open={open} onClose={() => setOpen(false)} />
+      <MobileMenu open={open} onClose={() => setOpen(false)} links={headerLinks} />
     </>
   );
 }

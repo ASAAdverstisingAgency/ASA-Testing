@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import * as THREE from "three";
 
-const YELLOW = "#F5B400";
+const RED = "#EC3038";
 const BLACK = "#111111";
 const WHITE = "#FFFFFF";
 
@@ -39,17 +39,17 @@ export function drawBillboardPrint(ctx: CanvasRenderingContext2D) {
   const { width, height } = ctx.canvas;
   ctx.fillStyle = BLACK;
   ctx.fillRect(0, 0, width, height);
-  ctx.fillStyle = YELLOW;
+  ctx.fillStyle = RED;
   ctx.fillRect(0, 0, 28, height);
 
   ctx.textBaseline = "alphabetic";
   ctx.fillStyle = WHITE;
   ctx.font = "800 320px Helvetica, Arial, sans-serif";
   ctx.fillText("BIG IDEAS.", 160, 720);
-  ctx.fillStyle = YELLOW;
+  ctx.fillStyle = RED;
   ctx.fillText("BIGGER IMPACT.", 160, 1080);
 
-  ctx.fillStyle = YELLOW;
+  ctx.fillStyle = RED;
   ctx.fillRect(160, 1280, 72, 18);
   ctx.fillStyle = WHITE;
   ctx.font = "700 64px Helvetica, Arial, sans-serif";
@@ -64,7 +64,7 @@ export function drawBillboardDigital(ctx: CanvasRenderingContext2D) {
   const { width, height } = ctx.canvas;
   ctx.fillStyle = "#070707";
   ctx.fillRect(0, 0, width, height);
-  ctx.strokeStyle = "rgba(245,180,0,0.12)";
+  ctx.strokeStyle = "rgba(236,48,56,0.12)";
   for (let x = 0; x < width; x += 80) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
@@ -75,7 +75,7 @@ export function drawBillboardDigital(ctx: CanvasRenderingContext2D) {
   ctx.fillStyle = WHITE;
   ctx.font = "800 260px Helvetica, Arial, sans-serif";
   ctx.fillText("TURN ATTENTION", 140, 380);
-  ctx.fillStyle = YELLOW;
+  ctx.fillStyle = RED;
   ctx.fillText("INTO ENGAGEMENT.", 140, 720);
   ctx.fillStyle = "rgba(255,255,255,0.55)";
   ctx.font = "600 48px Helvetica, Arial, sans-serif";
@@ -136,7 +136,7 @@ export function useSurfaceTexture(kind: "asphalt" | "concrete" | "windows") {
           for (let y = 8; y < 1024; y += 28) {
             for (let x = 8; x < 1024; x += 18) {
               if (Math.random() > 0.38) {
-                ctx.fillStyle = Math.random() > 0.7 ? "#F5B400" : "#ffe7a8";
+                ctx.fillStyle = Math.random() > 0.7 ? "#EC3038" : "#f5a0a4";
                 ctx.globalAlpha = 0.35 + Math.random() * 0.45;
                 ctx.fillRect(x, y, 10, 16);
               }

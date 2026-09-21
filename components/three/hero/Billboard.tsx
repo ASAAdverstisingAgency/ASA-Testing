@@ -1,10 +1,12 @@
 "use client";
 
 import type { MutableRefObject } from "react";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
+import { useTexture } from "@react-three/drei";
 import { useFrame, type ThreeElements } from "@react-three/fiber";
 import * as THREE from "three";
-import { useCampaignTexture } from "@/components/three/hero/textures";
+
+const BANNER_SRC = "/ASA%20Message_2X1.jpg";
 
 function Steel({ children, ...props }: ThreeElements["mesh"]) {
   return (
@@ -21,24 +23,25 @@ export function Billboard({
   progress: MutableRefObject<number>;
 }) {
   const group = useRef<THREE.Group>(null);
-  const print = useCampaignTexture("print");
-  const digital = useCampaignTexture("digital");
-  const printMat = useRef<THREE.MeshStandardMaterial>(null);
-  const digitalMat = useRef<THREE.MeshStandardMaterial>(null);
+  const banner = useTexture(BANNER_SRC);
+
+  useLayoutEffect(() => {
+    banner.colorSpace = THREE.SRGBColorSpace;
+    banner.anisotropy = 16;
+    banner.wrapS = THREE.ClampToEdgeWrapping;
+    banner.wrapT = THREE.ClampToEdgeWrapping;
+    banner.minFilter = THREE.LinearMipmapLinearFilter;
+    banner.magFilter = THREE.LinearFilter;
+    banner.generateMipmaps = true;
+    banner.needsUpdate = true;
+  }, [banner]);
 
   useFrame((_, delta) => {
     if (!group.current) return;
-    const p = progress.current;
-    const digitalMix = THREE.MathUtils.smoothstep(p, 0.52, 0.68);
-    const pass = THREE.MathUtils.smoothstep(p, 0.62, 0.8);
+    const pass = THREE.MathUtils.smoothstep(progress.current, 0.62, 0.8);
     group.current.scale.setScalar(
       THREE.MathUtils.damp(group.current.scale.x, 1 + pass * 0.08, 2.6, delta),
     );
-    if (printMat.current) printMat.current.opacity = 1 - digitalMix;
-    if (digitalMat.current) {
-      digitalMat.current.opacity = digitalMix;
-      digitalMat.current.emissiveIntensity = 0.2 + digitalMix * 0.9;
-    }
   });
 
   return (
@@ -68,28 +71,12 @@ export function Billboard({
       <mesh position={[0, 9.15, 0.26]}>
         <planeGeometry args={[11.45, 5.5]} />
         <meshStandardMaterial
-          ref={printMat}
-          map={print}
-          color={print ? "#ffffff" : "#111"}
+          map={banner}
+          color="#ffffff"
           roughness={0.42}
           metalness={0.04}
-          transparent
           polygonOffset
           polygonOffsetFactor={-1}
-        />
-      </mesh>
-      <mesh position={[0, 9.15, 0.27]}>
-        <planeGeometry args={[11.45, 5.5]} />
-        <meshStandardMaterial
-          ref={digitalMat}
-          map={digital}
-          color="#ffffff"
-          emissive="#F5B400"
-          emissiveIntensity={0}
-          roughness={0.16}
-          metalness={0.28}
-          transparent
-          opacity={0}
         />
       </mesh>
 

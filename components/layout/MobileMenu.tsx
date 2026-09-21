@@ -3,14 +3,15 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { navItems, site } from "@/data/site";
+import { site } from "@/data/site";
 
 interface MobileMenuProps {
   open: boolean;
   onClose: () => void;
+  links: ReadonlyArray<{ label: string; href: string }>;
 }
 
-export function MobileMenu({ open, onClose }: MobileMenuProps) {
+export function MobileMenu({ open, onClose, links }: MobileMenuProps) {
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -20,7 +21,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
   return (
     <motion.div
-      className="perspective fixed inset-0 z-[60] flex flex-col bg-paper px-5 pt-28 pb-10 md:px-10 lg:hidden"
+      className="perspective fixed inset-0 z-[60] flex flex-col bg-paper px-5 pt-24 pb-10 sm:px-8 sm:pt-28 md:px-10 md:hidden"
       id="mobile-nav"
       initial={false}
       animate={open ? "open" : "closed"}
@@ -38,7 +39,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       aria-hidden={!open}
     >
       <nav className="preserve-3d flex flex-1 flex-col justify-center gap-1">
-        {navItems.map((item, index) => (
+        {links.map((item, index) => (
           <motion.div
             key={item.href}
             variants={{
@@ -50,7 +51,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             <Link
               href={item.href}
               onClick={onClose}
-              className="display block text-[8.5vw] leading-[0.95]"
+              className="display block text-[clamp(2.5rem,10vw,4rem)] leading-[0.95]"
             >
               {item.label}
             </Link>
@@ -61,7 +62,11 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         <p className="meta">
           {site.locations[0].city} / {site.locations[1].city}
         </p>
-        <Link href="/contact" onClick={onClose} className="text-sm tracking-tight">
+        <Link
+          href="/#contact"
+          onClick={onClose}
+          className="bg-ink px-5 py-3 text-[12px] tracking-[0.16em] text-paper uppercase"
+        >
           Let&apos;s Talk
         </Link>
       </div>

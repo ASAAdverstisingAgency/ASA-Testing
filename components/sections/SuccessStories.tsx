@@ -45,27 +45,27 @@ export function SuccessStories({
   );
 
   return (
-    <section ref={section} className="bg-ink py-20 text-paper md:py-28">
+    <section id="work" ref={section} className="scroll-mt-[72px] bg-ink py-16 text-paper sm:py-20 md:scroll-mt-[88px] md:py-28">
       <div className="site-shell">
-        <div className="mb-12 md:mb-16">
-          <p className="meta mb-4 text-white/50">Results</p>
-          <h2 className="font-display text-[12vw] leading-[0.9] font-extrabold tracking-[-0.05em] md:text-[7vw] lg:text-[5.2vw]">
+        <div className="mb-8 sm:mb-12 md:mb-16">
+          <p className="meta mb-3 text-white/50 sm:mb-4">Results</p>
+          <h2 className="font-display text-[clamp(2.5rem,11vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.05em] md:text-[clamp(3.5rem,6vw,5.5rem)]">
             Success Stories
           </h2>
         </div>
 
-        <ul className="flex flex-col gap-5 md:gap-6">
+        <ul className="flex flex-col gap-4 sm:gap-5 md:gap-6">
           {items.map((story) => (
             <li key={story.slug} data-story-card>
               <Link
                 href={`/work/${story.slug}`}
-                className="group relative block min-h-[280px] overflow-hidden md:min-h-[340px] lg:min-h-[380px]"
+                className="group relative block min-h-[240px] overflow-hidden sm:min-h-[280px] md:min-h-[340px] lg:min-h-[380px]"
               >
                 <Image
                   src={story.image.src}
                   alt={story.image.alt}
                   fill
-                  sizes="(max-width: 1440px) 100vw, 1400px"
+                  sizes="(max-width: 1440px) 100vw, 1600px"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
                 <div
@@ -76,12 +76,12 @@ export function SuccessStories({
                 />
                 <div className="absolute inset-0 bg-black/20 transition-colors duration-500 group-hover:bg-black/10" />
 
-                <div className="relative z-10 flex h-full min-h-[280px] flex-col justify-end p-6 md:min-h-[340px] md:p-10 lg:min-h-[380px] lg:p-12">
-                  <p className="meta mb-3 text-white/65">{story.label}</p>
-                  <h3 className="font-display max-w-[18ch] text-[8.5vw] leading-[0.92] font-extrabold tracking-[-0.045em] md:text-[4.4vw] lg:text-[3.2vw]">
+                <div className="relative z-10 flex h-full min-h-[240px] flex-col justify-end p-5 sm:min-h-[280px] sm:p-6 md:min-h-[340px] md:p-10 lg:min-h-[380px] lg:p-12">
+                  <p className="meta mb-2 text-white/65 sm:mb-3">{story.label}</p>
+                  <h3 className="font-display max-w-[18ch] text-[clamp(1.6rem,7vw,2.8rem)] leading-[0.92] font-extrabold tracking-[-0.045em] md:text-[clamp(2rem,4vw,3.2rem)]">
                     {story.headline}
                   </h3>
-                  <p className="mt-4 max-w-[36rem] text-[14px] leading-relaxed text-white/75 md:text-[15px]">
+                  <p className="mt-3 max-w-[36rem] text-[13px] leading-relaxed text-white/75 sm:mt-4 sm:text-[14px] md:text-[15px]">
                     {story.copy}
                   </p>
                 </div>

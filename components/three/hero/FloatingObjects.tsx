@@ -24,7 +24,7 @@ export function FloatingObjects({ reduced = false }: { reduced?: boolean }) {
       </mesh>
       <mesh position={[2.4, 2.1, 0.4]}>
         <sphereGeometry args={[0.09, 16, 16]} />
-        <meshStandardMaterial color="#F5B400" metalness={0.3} roughness={0.35} />
+        <meshStandardMaterial color="#EC3038" metalness={0.3} roughness={0.35} />
       </mesh>
       {!reduced && (
         <>

@@ -30,7 +30,7 @@ export function Logo({
   return (
     <span
       className={cn(
-        "relative inline-block h-9 w-[5.5rem] shrink-0 lg:h-10 lg:w-[6.5rem]",
+        "relative inline-block h-11 w-[7rem] shrink-0 lg:h-12 lg:w-[8.5rem]",
         className,
       )}
     >
@@ -38,7 +38,7 @@ export function Logo({
         src={LOGO_SRC}
         alt={site.name}
         fill
-        sizes="120px"
+        sizes="160px"
         priority={priority}
         className="object-contain object-left"
       />
