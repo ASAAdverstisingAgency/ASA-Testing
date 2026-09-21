@@ -45,11 +45,11 @@ export function SuccessStories({
   );
 
   return (
-    <section id="work" ref={section} className="scroll-mt-[72px] bg-ink py-16 text-paper sm:py-20 md:scroll-mt-[88px] md:py-28">
+    <section id="work" ref={section} className="scroll-mt-[72px] overflow-hidden bg-ink py-16 text-paper sm:py-20 md:scroll-mt-[88px] md:py-28">
       <div className="site-shell">
         <div className="mb-8 sm:mb-12 md:mb-16">
           <p className="meta mb-3 text-white/50 sm:mb-4">Results</p>
-          <h2 className="font-display text-[clamp(2.5rem,11vw,4.5rem)] leading-[0.9] font-extrabold tracking-[-0.05em] md:text-[clamp(3.5rem,6vw,5.5rem)]">
+          <h2 className="font-display text-[clamp(2.5rem,11vw,4.5rem)] leading-[0.95] font-extrabold tracking-[-0.05em] md:text-[clamp(3.5rem,6vw,5.5rem)]">
             Success Stories
           </h2>
         </div>

@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import {
   BarChart3,
   Lightbulb,
@@ -6,6 +9,7 @@ import {
   Target,
   type LucideIcon,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const pillars: Array<{
   title: string;
@@ -41,7 +45,48 @@ const pillars: Array<{
 
 const labels = ["Ideas", "Strategy", "Execution", "Real Impact"];
 
+function PillarCard({
+  item,
+  index,
+  className,
+}: {
+  item: (typeof pillars)[number];
+  index: number;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl bg-white px-5 py-9 text-center",
+        className,
+      )}
+    >
+      <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-accent to-[#c41f28] text-paper">
+        <item.Icon size={18} strokeWidth={1.9} />
+      </span>
+      <p className="mt-4 text-[12px] font-semibold tracking-[0.14em] text-accent">
+        {String(index + 1).padStart(2, "0")}
+      </p>
+      <h3 className="font-display mt-2.5 text-[1.1rem] leading-[1.2] font-bold tracking-[-0.03em] text-ink">
+        {item.title}
+      </h3>
+      <p className="mt-3 text-[13px] leading-relaxed text-muted">{item.copy}</p>
+    </div>
+  );
+}
+
 export function WhyASA() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setActive((current) => (current + 1) % pillars.length);
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
   return (
     <section className="relative overflow-hidden bg-[#f6f4ef] py-16 sm:py-20 md:py-28">
       <svg
@@ -99,7 +144,10 @@ export function WhyASA() {
           {labels.map((label, index) => (
             <span key={label} className="inline-flex items-center">
               {index > 0 && (
-                <span className="mx-1.5 text-ink/20 sm:mx-2 md:mx-3" aria-hidden="true">
+                <span
+                  className="mx-1.5 text-ink/20 sm:mx-2 md:mx-3"
+                  aria-hidden="true"
+                >
                   |
                 </span>
               )}
@@ -108,24 +156,56 @@ export function WhyASA() {
           ))}
         </p>
 
-        <ul className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 md:grid-cols-3 lg:mt-16 lg:grid-cols-5 lg:gap-4 xl:gap-5">
-          {pillars.map((item, index) => (
-            <li
-              key={item.title}
-              className="rounded-2xl bg-white px-4 py-8 text-center shadow-[0_12px_32px_rgba(17,17,17,0.07)] transition-transform duration-300 hover:-translate-y-1 sm:px-5 sm:py-9"
+        {/* Mobile / tablet carousel */}
+        <div
+          className="mt-10 lg:hidden"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+        >
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${active * 100}%)` }}
             >
-              <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-accent to-[#c41f28] text-paper shadow-[0_6px_14px_rgba(236,48,56,0.35)]">
-                <item.Icon size={18} strokeWidth={1.9} />
-              </span>
-              <p className="mt-4 text-[12px] font-semibold tracking-[0.14em] text-accent">
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <h3 className="font-display mt-2.5 text-[1.05rem] leading-[1.2] font-bold tracking-[-0.03em] text-ink sm:text-[1.1rem]">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-[13px] leading-relaxed text-muted">
-                {item.copy}
-              </p>
+              {pillars.map((item, index) => (
+                <div key={item.title} className="w-full shrink-0 px-1">
+                  <PillarCard item={item} index={index} className="mx-auto max-w-md" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 flex items-center justify-center gap-2" role="tablist" aria-label="Approach slides">
+            {pillars.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                role="tab"
+                aria-selected={active === index}
+                aria-label={`Show ${item.title}`}
+                onClick={() => setActive(index)}
+                className={cn(
+                  "h-2 rounded-full transition-all duration-300",
+                  active === index
+                    ? "w-6 bg-accent"
+                    : "w-2 bg-ink/20 hover:bg-ink/35",
+                )}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop grid */}
+        <ul className="mt-16 hidden gap-4 lg:grid lg:grid-cols-5 xl:gap-5">
+          {pillars.map((item, index) => (
+            <li key={item.title}>
+              <PillarCard
+                item={item}
+                index={index}
+                className="h-full transition-transform duration-300 hover:-translate-y-1"
+              />
             </li>
           ))}
         </ul>

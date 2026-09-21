@@ -30,7 +30,7 @@ export function Logo({
   return (
     <span
       className={cn(
-        "relative inline-block h-11 w-[7rem] shrink-0 lg:h-12 lg:w-[8.5rem]",
+        "relative inline-block h-12 w-[7.75rem] shrink-0 sm:h-12 sm:w-[8rem] lg:h-[3.25rem] lg:w-[9rem]",
         className,
       )}
     >
